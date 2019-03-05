@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF Files Generator</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <style>
+
+
+    :root {
+      --font-family: 'Roboto';
+      --font-size-title: 25px;
+      --font-size-subtitle: 18px;
+      --font-size-paragraph: 13px;
+      --font-weight: 100;
+      --color-background: rgb(55, 53, 63);
+      --color-header: rgb(38, 36, 44);
+      --color-texts: rgb(255, 255, 255, 0.75);
+      --color-end-point-method: rgb(29, 235, 235);
+      --color-end-point-url: rgb(29, 235, 235, 0.5);
+      --spacing-base: 20px;
+    }/*root*/
+    
+
+    html, body {
+      padding: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+      background-color: var(--color-background);
+    }/*html*/
+    
+
+    .header {
+      width: 100%;
+      padding: var(--spacing-base);
+      margin: 0 !important;
+      color: var(--color-texts) !important;
+      font-family: var(--font-family) !important;
+      background-color: var(--color-header);
+    }/*header*/
+
+
+    h1, h3 { margin: 0 !important; }
+
+
+    h1.title {
+      color: var(--color-texts);
+      font-size: var(--font-size-title);
+      font-weight: var(--font-weight) !important;      
+    }/*h1.title*/
+
+
+    h3.title {
+      font-size: var(--font-size-subtitle);
+      font-weight: var(--font-weight);
+      opacity: 0.55;
+    }/*h3.title*/
+
+
+    .info {
+      margin: var(--spacing-base) !important;
+      color: var(--color-texts);
+      font-family: var(--font-family) !important;
+      font-size: var(--font-size-paragraph);
+      font-weight: var(--font-weight) !important;
+    }/*info*/
+
+
+    .info-summary {
+      margin-bottom: 50px;
+    }/*info-summary*/
+
+
+    .end-point .description {
+      margin-bottom: 5px;
+      font-family: var(--font-family);
+      font-size: var(--font-size-paragraph);
+      font-weight: var(--font-weight);
+      opacity: 0.5;
+    }/*end-point.description*/
+
+
+    .end-point .summary {
+      padding: 10px 0;
+      color: #000000 !important;
+      
+      display: flex;
+      align-items: center;
+      
+    }/*end-point.summary*/
+
+
+    .end-point .summary .method {
+      font-weight: bold;
+      padding: 10px;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      background-color: var(--color-end-point-method);
+    }/*end-point.summary.method*/
+
+
+    .end-point .summary .url {
+      padding: 10px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      font-size: var(--font-size-paragraph);
+      font-weight: bolder;
+      color: var(--color-texts);
+
+      background-color: var(--color-end-point-url);
+    }/*.end-point .summary .url*/
+
+  </style>
+  
+
+  <div class="header">
+    <h1 class="title">PDF Files Generator</h1>
+    <h3 class="title"><small>Info of all end points of PdfFilesGenerator Api Rest</small></h3>
+  </div>
+
+  <div class="info">
+    <p class="info-summary">End points list where you can see all the requests to will use, yours parameters and paths.</p>
+    
+    <div class="end-point">
+      <div class="description">Get PDF file of web url arrives of url parameters</div>
+      <div class="summary">
+        <div class="method">GET</div>
+        <div class="url">pdfGenerator/api/pdfFile</div>
+      </div>
+    </div>
+
+  </div>
+  
+
+</body>
+</html>

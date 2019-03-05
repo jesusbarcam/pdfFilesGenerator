@@ -2,6 +2,7 @@
 import { Request, Response } from 'express';
 
 import Route from './route.interface';
+import { pathToFileURL } from 'url';
 
 
 
@@ -10,8 +11,8 @@ export class MainRoutes implements Route {
   _app: any;
 
   // EndPoints declarations
-  public static MAIN_ENDPOINT: string = '/api';
-  public static INFO_ENDPOINT: string = '/info';
+  public static MAIN_ENDPOINT: string = '/';
+  public static INFO_ENDPOINT: string = '/about';
 
 
   constructor(app: any) {
@@ -32,18 +33,18 @@ export class MainRoutes implements Route {
     // MAIN ENDPOINT
     this._app.route( MainRoutes.MAIN_ENDPOINT )
       .get((req: Request, res: Response) => {
-        res.status( 200 ).send({
-          message: ' GET request succesfull!!!'
-        });
+
+        res.render(`/about/index.html`);
+      
       });
 
 
     // INFO ENDPOINT
     this._app.route( MainRoutes.INFO_ENDPOINT )
       .get((req: Request, res: Response) => {
-        res.status( 200 ).send({
-          endpoints: "This is info of api backend with typescript!"
-        });
+        
+        res.render(`/about/index.html`);
+
       });// GEt
 
 

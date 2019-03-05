@@ -27,6 +27,8 @@ class App {
    * @description
    */
   private config(): void {
+    // Register url of static files
+    this.app.use(express.static(`${__dirname}/views`));
     
     // Support application/json type post data
     this.app.use(bodyparser.json());
@@ -36,9 +38,8 @@ class App {
 
   }// Config
 
-
-
 }// App
+
 
 
 export default new App().app;

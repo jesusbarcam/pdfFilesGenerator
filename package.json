@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "copyResources": "cp -r ./server/views ./dist",
     "dev": "ts-node ./server/server.ts",
-    "prod": "npm run build && npm run start",
+    "prod": "npm run build && npm run copyResources && npm run start",
     "start": "nodemon ./dist/server.js"
   },
   "author": "jesusbarcam <jesusbarcam@gmail.com> (https://github.com/jesusbarcam)",
