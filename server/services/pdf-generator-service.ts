@@ -32,7 +32,7 @@ public generatePdfFromTemplate() {
  */
 public async generatePdf() {
 
-  const url = 'https://www.taric.es';
+  const url = 'https://www.marca.com';
   const pageFormat = 'A4';
 
   const browser = await puppeteer.launch({ headless: true });
@@ -43,7 +43,7 @@ public async generatePdf() {
 
   await browser.close();
   return pdf;
-  
+
 }// GeneratePdf
 
 
