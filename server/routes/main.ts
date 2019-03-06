@@ -11,8 +11,8 @@ export class MainRoutes implements Route {
   _app: any;
 
   // EndPoints declarations
-  public static MAIN_ENDPOINT: string = '/';
-  public static INFO_ENDPOINT: string = '/about';
+  public static readonly MAIN_ENDPOINT: string = '/';
+  public static readonly INFO_ENDPOINT: string = '/about';
 
 
   constructor(app: any) {

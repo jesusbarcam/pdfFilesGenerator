@@ -17,9 +17,11 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.15",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "puppeteer": "^1.13.0"
   },
   "devDependencies": {
+    "@types/puppeteer": "^1.12.1",
     "ts-node": "^8.0.2",
     "typescript": "^3.3.3333"
   }

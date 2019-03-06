@@ -10,7 +10,8 @@
       "baseUrl": "./server"
   },
   "include": [
-      "server/**/*.ts"
+      "server/**/*.ts",
+      "node_modules/@types/puppeteer/index.d.ts"
   ],
   "exclude": [
       "node_modules"
