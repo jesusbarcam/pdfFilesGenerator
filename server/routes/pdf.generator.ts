@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
 
 import Route from "./route.interface";
-import PDFGeneratorService from '../services/pdf-generator-service';
+import PDFGeneratorController from '../controllers/pdf-generator-controller';
+import Exception from 'models/exception';
 
 
 
 export class PDFGeneratorRoutes implements Route {
   
   _app: any;
-  _pdfGenerator: PDFGeneratorService;
+  _pdfGeneratorController: PDFGeneratorController;
 
   public static readonly PDF_FILE_OF_URL: string = '/pdf/url';
   public static readonly PDF_FILE_OF_TEMPLATE: string = '/pdf/template';
@@ -16,7 +17,7 @@ export class PDFGeneratorRoutes implements Route {
   
   constructor(app: any) {
     this._app = app;
-    this._pdfGenerator = new PDFGeneratorService();
+    this._pdfGeneratorController = new PDFGeneratorController();
     this._generateEndPoints();
   }// Constructor
   
@@ -30,6 +31,7 @@ export class PDFGeneratorRoutes implements Route {
   _generateEndPoints(): void {
   
 
+
     /**
      * @route
      * @description
@@ -39,19 +41,23 @@ export class PDFGeneratorRoutes implements Route {
     this._app.route( PDFGeneratorRoutes.PDF_FILE_OF_URL )
       .get((req: Request, res: Response) => {
 
-        this._pdfGenerator.generatePdf()
+        this._pdfGeneratorController.generatePdfFileFromUrl(req)
         .then((pdfFile) => {
           
-          console.log("PDF --> FILE: ", pdfFile );
-          res.set({'Content-Type': 'application/pdf', 'Content-Length' : pdfFile.length});
+          res.status(200);
+          res.set({'Content-Type': 'application/pdf', 'Content-Length' : pdfFile.length });
           res.send( pdfFile );
         
-        }).catch((err) => {
-          console.log("ERROR IN PDF FILE OF URL ----> ", err );
+        })
+        .catch((exception: Exception) => {
+          console.error( exception );
+          res.status(exception.statusCode).send(`${exception.description}`);
         });
+        
       });
 
-      
+
+
 
     /**
      * @route

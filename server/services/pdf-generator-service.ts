@@ -5,46 +5,38 @@ import * as puppeteer from 'puppeteer';
 
 export default class PDFGeneratorService {
 
-
-/**
- * @service
- * @description
- */
-public generatePdfFromUrl() {
-}// GeneratePdfFromUrl
+  public static readonly A3_FILE_FORMAT = 'A3';
+  public static readonly A4_FILE_FORMAT = 'A4';
 
 
+  /**
+  * @service
+  * @description
+  */
+  public async generatePdfFromUrl(url: string, formatFile: string) {
 
-/**
- * @service
- * @description
- */
-public generatePdfFromTemplate() {
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
 
-}// GeneratePdfFromTemplate
+    await page.goto( url, { waitUntil: 'networkidle0' });
+    const pdf = await page.pdf({ format: formatFile as puppeteer.PDFFormat });
+
+    await browser.close();
+    return pdf;
+  }// GeneratePdfFromUrl
 
 
 
-/**
- * @method
- * @private
- * @description
- */
-public async generatePdf() {
 
-  const url = 'https://www.marca.com';
-  const pageFormat = 'A4';
+  /**
+   * @service
+   * @description
+  */
+  public generatePdfFromTemplate(templateName: string, payload: any) {
 
-  const browser = await puppeteer.launch({ headless: true });
-  const page = await browser.newPage();
+  }// GeneratePdfFromTemplate
 
-  await page.goto( url, { waitUntil: 'networkidle0' });
-  const pdf = await page.pdf({ format: pageFormat });
 
-  await browser.close();
-  return pdf;
-
-}// GeneratePdf
 
 
 }// PDFGeneratorService
