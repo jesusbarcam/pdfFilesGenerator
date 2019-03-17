@@ -51,6 +51,28 @@ export default class PDFGeneratorController {
     return generatedFile;
   }// GeneratePdfFileFromUrl
 
+
+
+  /**
+   * @method
+   * @param req
+   * @description 
+   */
+  public async generatePdfFileFromTemplate (req: Request) {
+
+    let generatedPDFFile = null;
+
+    const template = null;
+    const payload = null;
+
+    await this._pdfGenerator.generatePdfFromTemplate(template, payload)
+      .then((pdfFile) => {
+        generatedPDFFile = pdfFile;
+      });
+
+    return generatedPDFFile;
+  }// GeneratePdfFileFromTemplate
+
   
 
 

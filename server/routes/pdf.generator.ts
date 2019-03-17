@@ -12,7 +12,7 @@ export class PDFGeneratorRoutes implements Route {
   _pdfGeneratorController: PDFGeneratorController;
 
   public static readonly PDF_FILE_OF_URL: string = '/pdf/url';
-  public static readonly PDF_FILE_OF_TEMPLATE: string = '/pdf/template';
+  public static readonly PDF_FILE_FROM_TEMPLATE: string = '/pdf/template';
   
   
   constructor(app: any) {
@@ -64,9 +64,20 @@ export class PDFGeneratorRoutes implements Route {
      * @description
      * Return pdf file of template 
      */
-    this._app.route( PDFGeneratorRoutes.PDF_FILE_OF_TEMPLATE )
+    this._app.route( PDFGeneratorRoutes.PDF_FILE_FROM_TEMPLATE )
       .get((req: Request, res: Response) => {
-        res.send('AQUI RETORNAMOS UN ARCHIVO DE PDF DE UNA PLANTILLA PREVIAMENTE DEFINIDA...');
+
+        console.log(" PDF FILE FROM TEMPLATE !!!" );
+
+        this._pdfGeneratorController.generatePdfFileFromTemplate(req)
+        .then((pdfFile) => {
+
+          res.status(200);
+          res.set({'Content-Type': 'application/pdf', 'Content-Length' : pdfFile.length });
+          res.send( pdfFile );
+
+        })
+
       });  
 
   }// GenerateEndPoints
