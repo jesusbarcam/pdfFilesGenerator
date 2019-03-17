@@ -67,8 +67,6 @@ export class PDFGeneratorRoutes implements Route {
     this._app.route( PDFGeneratorRoutes.PDF_FILE_FROM_TEMPLATE )
       .get((req: Request, res: Response) => {
 
-        console.log(" PDF FILE FROM TEMPLATE !!!" );
-
         this._pdfGeneratorController.generatePdfFileFromTemplate(req)
         .then((pdfFile) => {
 
@@ -76,10 +74,12 @@ export class PDFGeneratorRoutes implements Route {
           res.set({'Content-Type': 'application/pdf', 'Content-Length' : pdfFile.length });
           res.send( pdfFile );
 
-        })
-
+        }).catch((exception: Exception) => {
+          console.error( exception );
+          res.status(exception.statusCode).send(`${exception.description}`);
+        });
       });  
 
-  }// GenerateEndPoints
 
+  }// GenerateEndPoints
 }// PDFGeneratorRoutes
