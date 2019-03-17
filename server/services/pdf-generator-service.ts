@@ -46,6 +46,16 @@ export default class PDFGeneratorService {
     const page = await browser.newPage();    
     await page.goto(`${PDFGeneratorService.TEMPLATES_DIRECTORY}/index.html`); 
     
+
+    await page.evaluateHandle('document.fonts.ready')
+    .then(() => {
+      // TODO: Cuando las fuentes son cargadas correctamente      
+    
+    }).catch((err) => {
+      // TODO: Cuando al cargar las fuentes nos retorna un error
+    });
+    
+    
     const header = fs.readFileSync(`${__dirname}/${PDFGeneratorService.HEADER_TEMPLATE_DIRECTORY}`, 'utf8');
     const footer = fs.readFileSync(`${__dirname}/${PDFGeneratorService.FOOTER_TEMPLATE_DIRECTORY}`,'utf8');
 
@@ -62,7 +72,7 @@ export default class PDFGeneratorService {
         left: '30px',
       }    
     };
-
+    
     const pdf = await page.pdf( options );    
     await browser.close(); 
     return pdf;
