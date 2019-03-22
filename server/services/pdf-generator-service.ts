@@ -12,7 +12,7 @@ export default class PDFGeneratorService {
   public static readonly A3_FILE_FORMAT = 'A3';
   public static readonly A4_FILE_FORMAT = 'A4';
 
-  public static readonly TEMPLATES_DIRECTORY = 'file:///Users/Rawdog/Developer/Learning/Node/PdfFilesGenerator/server/views/templates';
+  public static readonly TEMPLATES_DIRECTORY = '../views/templates';
   public static readonly HEADER_TEMPLATE_DIRECTORY = `../views/templates/header.html`;
   public static readonly FOOTER_TEMPLATE_DIRECTORY = `../views/templates/footer.html`;
 
@@ -36,6 +36,11 @@ export default class PDFGeneratorService {
 
 
 
+
+
+
+
+
   /**
    * @service
    * @description
@@ -43,19 +48,21 @@ export default class PDFGeneratorService {
   public async generatePdfFromTemplate(templateName: string, payload: any) {
 
     const browser = await puppeteer.launch();
-    const page = await browser.newPage();    
-    await page.goto(`${PDFGeneratorService.TEMPLATES_DIRECTORY}/index.html`); 
-    
+    const page = await browser.newPage();
+
+    const urlTemplates = `file://${__dirname}/${PDFGeneratorService.TEMPLATES_DIRECTORY}/index.html`;
+    await page.goto( urlTemplates );
+
 
     await page.evaluateHandle('document.fonts.ready')
     .then(() => {
-      // TODO: Cuando las fuentes son cargadas correctamente      
-    
+      // TODO: Cuando las fuentes son cargadas correctamente
+
     }).catch((err) => {
       // TODO: Cuando al cargar las fuentes nos retorna un error
     });
-    
-    
+
+
     const header = fs.readFileSync(`${__dirname}/${PDFGeneratorService.HEADER_TEMPLATE_DIRECTORY}`, 'utf8');
     const footer = fs.readFileSync(`${__dirname}/${PDFGeneratorService.FOOTER_TEMPLATE_DIRECTORY}`,'utf8');
 
@@ -70,11 +77,11 @@ export default class PDFGeneratorService {
         bottom: '100px',
         right: '30px',
         left: '30px',
-      }    
+      }
     };
-    
-    const pdf = await page.pdf( options );    
-    await browser.close(); 
+
+    const pdf = await page.pdf( options );
+    await browser.close();
     return pdf;
 
   }// GeneratePdfFromTemplate
